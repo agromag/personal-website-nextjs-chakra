@@ -19,8 +19,6 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import Faq from "react-faq-component";
 import { Avatar } from '@chakra-ui/react'
-import { LinkIcon } from '@chakra-ui/icons'
-
 
 const CustomLink = (props) => {
     const { colorMode } = useColorMode()
