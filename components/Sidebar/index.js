@@ -8,7 +8,7 @@ import {
     DrawerBody,
     DrawerContent,
   } from '@chakra-ui/react'
-import SidebarContent from "./SideBarContent";
+import SidebarContent from "./SidebarContent";
 
 
 const Sidebar = ({ isOpen, variant, onClose, content }) => {
@@ -30,7 +30,7 @@ const Sidebar = ({ isOpen, variant, onClose, content }) => {
             <DrawerOverlay>
                 <DrawerContent bg="#195418">
                         <DrawerCloseButton color={'white'}/>
-                    <DrawerHeader>Documentation</DrawerHeader>
+                    <DrawerHeader>Fiki</DrawerHeader>
                     <DrawerBody>
                         {content && <SidebarContent menuContent={content} />}
                     </DrawerBody>
