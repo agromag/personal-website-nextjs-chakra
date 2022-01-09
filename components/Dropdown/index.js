@@ -6,7 +6,7 @@ const DropDownList = ({ data }) => {
 
     return (
         <Box mt='40px'>
-            {data.map((data, i) => <DropdownElement data={data} />)}
+            {data.map((data, i) => <DropdownElement key={i} data={data} />)}
         </Box>
     )
 }

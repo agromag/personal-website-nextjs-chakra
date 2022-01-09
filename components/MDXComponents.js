@@ -173,8 +173,11 @@ const ImageGrid = (props) => {
 const GroupAvatars = (props) => {
 
     const { children } = props;
+
+    
     
     const data = children.props.children;
+
     const splitedData = data.split(/[()]+/).filter(x => !x.includes('!') && x!='');
     
     const avatars = splitedData.map(item => {
@@ -192,7 +195,7 @@ const GroupAvatars = (props) => {
         <Grid templateColumns='repeat(3, 1fr)' gap={11} style={{width: '100%'}}>
             {avatars.map((avatar,i) => (
                 <GridItem style={{width: '100%'}} key={i} mb={10}>
-                    <Link href={avatar.link} style={{ textDecoration: 'none' }} target="_blank">
+                    <Link href={`https://${avatar.link}`} style={{ textDecoration: 'none' }} target="_blank">
                     <Box>
                        
                         
@@ -216,11 +219,13 @@ const GroupAvatars = (props) => {
                    
                        
 
-                   </Box>   
-                    </Link>       
+                   </Box>
+                    </Link>
                 </GridItem>
             ))}
         </Grid>
+        
+ 
     )
 }
 

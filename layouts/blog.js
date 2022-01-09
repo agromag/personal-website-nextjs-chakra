@@ -55,7 +55,6 @@ export default function BlogLayout({ children, frontMatter, data }) {
                     <Avatar
                         size="xs"
                         name={frontMatter.author}
-                        src="../images/portrait.jpeg"
                         mr={2}
                 />
                             <Text fontSize="sm" color={textColor[colorMode]}>
