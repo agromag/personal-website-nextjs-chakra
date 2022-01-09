@@ -147,7 +147,7 @@ const FaqComponent = (props) => {
         rows
     }
 
-    return <Faq data={data} styles={{ titleTextSize: "20px", rowTitleTextSize: '18px', rowContentTextSize: '17px' }}/>
+    return <Faq data={data} styles={{ titleTextSize: "20px", rowTitleTextSize: '16px', rowContentTextSize: '16px', rowContentPaddingLeft: '20px' }}/>
 }
 
 const ImageGrid = (props) => {
