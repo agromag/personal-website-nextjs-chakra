@@ -127,7 +127,9 @@ const MultipleImages = (props) => {
     const photos = imageSrcs.map(image => ({ original: image, thumbnail: image}))
 
     return (
-        <ImageGallery items={photos} />
+        <Box width="100%">
+            <ImageGallery items={photos} />
+        </Box>
     )
 }
 
