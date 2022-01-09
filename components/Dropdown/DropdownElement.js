@@ -29,9 +29,10 @@ const DropdownElement = ({ data }) => {
                     color={'#fff'}
                     size="sm"
                     _hover={{}}
+                    style={{whiteSpace: 'initial', lineHeight: 1, marginBottom: '5px'}}
                     
                         >
-                            {data.title}
+                            {data.title} 
                         </Button>
                         
                             <IconButton

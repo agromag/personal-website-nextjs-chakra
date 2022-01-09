@@ -8,7 +8,7 @@ const SidebarContent = ({ menuContent }) => {
 
     const [searchInput, setSearchInput] = useState('')
 
-    const filteredMenuItems = menuContent.filter(item => item.title.includes(searchInput))
+    const filteredMenuItems = menuContent.filter(item => item.title.toLowerCase().includes(searchInput))
 
     return (
 
