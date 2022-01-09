@@ -1,4 +1,4 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Box, Text, Flex, Link } from "@chakra-ui/react";
 import { useState } from "react";
 import DropDownList from "../Dropdown";
 import SearchInput from "../SearchInput";
@@ -21,12 +21,15 @@ const SidebarContent = ({ menuContent }) => {
         }}
     >
             <Box>
-            
+            <Link href='/' style={{textDecoration: 'none'}}>
                 <Flex alignItems="center">
-                <img src={'/images/core/logo.png'} width="30"/>
-                <Text color="#fff" fontWeight={'bold'} textTransform={'uppercase'} fontSize={20} ml={4}> Fiki </Text>
+                    
+                    <img src={'/images/core/logo.png'} width="30"/>
+                   <Text color="#fff" fontWeight={'bold'} textTransform={'uppercase'} fontSize={20} ml={4}> Fiki </Text>
+                    
                 
-                </Flex>
+                    </Flex>
+                    </Link>
                 <SearchInput setInput={setSearchInput}/>
         </Box>
         <DropDownList data={filteredMenuItems} />
