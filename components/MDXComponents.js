@@ -11,12 +11,15 @@ import {
     Flex,
     Grid,
     GridItem,
-    Image
+    Image,
+    Center,
 } from '@chakra-ui/react';
 import { jsx } from '@emotion/react'
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import Faq from "react-faq-component";
+import { Avatar } from '@chakra-ui/react'
+import { LinkIcon } from '@chakra-ui/icons'
 
 
 const CustomLink = (props) => {
@@ -154,9 +157,6 @@ const ImageGrid = (props) => {
 
     const { children } = props;
     const imageSrcs = children.split(/[()]+/).filter(x => !x.includes('!') && x!='');
-    
-
-    console.log(children)
 
     return (
         <Grid templateColumns='repeat(3, 1fr)' gap={6}>
@@ -165,8 +165,62 @@ const ImageGrid = (props) => {
                 <GridItem w='100%' h='30'>
                      <Image src={image} />
                 </GridItem>
-                   
                 
+            ))}
+        </Grid>
+    )
+}
+
+
+const GroupAvatars = (props) => {
+
+    const { children } = props;
+    
+    const data = children.props.children;
+    const splitedData = data.split(/[()]+/).filter(x => !x.includes('!') && x!='');
+    
+    const avatars = splitedData.map(item => {
+        const newArr = item.split('|');
+
+        return {
+            avatar: newArr[0].trim(),
+            nume: newArr[1].trim(),
+            job: newArr[2].trim(),
+            link: newArr[3].trim()
+        }
+    })
+
+    return (
+        <Grid templateColumns='repeat(3, 1fr)' gap={11} style={{width: '100%'}}>
+            {avatars.map((avatar,i) => (
+                <GridItem style={{width: '100%'}} key={i} mb={10}>
+                    <Link href={avatar.link} style={{ textDecoration: 'none' }} target="_blank">
+                    <Box>
+                       
+                        
+                       <Center>
+                       <Avatar
+                       src={avatar.avatar}
+                       name={avatar.nume}
+                           size={'xl'}
+                           mb={10}
+                   />
+                   </Center>
+                   
+
+                   <Center>
+                   <Box>
+                       <Text as="h2" textAlign="center" style={{ fontWeight: 'bold'}}> {avatar.nume} </Text>
+                       <Text as="p" textAlign="center"> {avatar.job } </Text>
+                   </Box>
+                   </Center>
+                     
+                   
+                       
+
+                   </Box>   
+                    </Link>       
+                </GridItem>
             ))}
         </Grid>
     )
@@ -194,7 +248,8 @@ const MDXComponents = {
     Flex: (props) => <Flex {...props} />,
     MultipleImages: (props) => <MultipleImages {...props} />,
     FaqComponent: (props) => <FaqComponent {...props} />,
-    ImageGrid: (props) => <ImageGrid {...props} />
+    ImageGrid: (props) => <ImageGrid {...props} />,
+    GroupAvatars: (props) => <GroupAvatars {...props} />
 }
 
 export { CustomLink }
