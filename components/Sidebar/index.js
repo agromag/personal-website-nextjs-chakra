@@ -20,7 +20,7 @@ const Sidebar = ({ isOpen, variant, onClose, content }) => {
             w="410px"
             top={0}
             height="100%"
-            bg="#171f3f"
+            bg="#195418"
             p={10}
         >
             {content && <SidebarContent menuContent={content} />}
@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, variant, onClose, content }) => {
     ) : (
         <Drawer isOpen={isOpen} placement="left" onClose={onClose} size={'sm'}>
             <DrawerOverlay>
-                <DrawerContent bg="#171f3f">
+                <DrawerContent bg="#195418">
                         <DrawerCloseButton color={'white'}/>
                     <DrawerHeader>Documentation</DrawerHeader>
                     <DrawerBody>

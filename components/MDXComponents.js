@@ -7,10 +7,17 @@ import {
     Link,
     Text,
     Divider,
-    useColorMode
+    useColorMode,
+    Flex,
+    Grid,
+    GridItem,
+    Image
 } from '@chakra-ui/react';
 import { jsx } from '@emotion/react'
-import NextLink from 'next/link'
+import "react-image-gallery/styles/css/image-gallery.css";
+import ImageGallery from 'react-image-gallery';
+import Faq from "react-faq-component";
+
 
 const CustomLink = (props) => {
     const { colorMode } = useColorMode()
@@ -111,6 +118,60 @@ const Hr = () => {
     return <Divider borderColor={borderColor[colorMode]} my={4} w="100%" />
 }
 
+const MultipleImages = (props) => {
+    
+    const { children, ...other } = props
+
+    const imageSrcs = children.split(/[()]+/).filter(x => !x.includes('!') && x!='');
+    const photos = imageSrcs.map(image => ({ original: image, thumbnail: image}))
+
+    return (
+        <ImageGallery items={photos} />
+    )
+}
+
+const FaqComponent = (props) => {
+
+    const children = props.children.map(item => (item.props.children));
+    const rows = [];
+
+    for (let i = 0; i < children.length - 1; i+=2){
+        rows.push({
+            title: children[i],
+            content: children[i+1]
+        })
+    }
+
+    const data = {
+        title: props.title,
+        rows
+    }
+
+    return <Faq data={data} styles={{ titleTextSize: "20px", rowTitleTextSize: '18px', rowContentTextSize: '17px' }}/>
+}
+
+const ImageGrid = (props) => {
+
+    const { children } = props;
+    const imageSrcs = children.split(/[()]+/).filter(x => !x.includes('!') && x!='');
+    
+
+    console.log(children)
+
+    return (
+        <Grid templateColumns='repeat(3, 1fr)' gap={6}>
+            
+            {imageSrcs.map(image => (
+                <GridItem w='100%' h='30'>
+                     <Image src={image} />
+                </GridItem>
+                   
+                
+            ))}
+        </Grid>
+    )
+}
+
 const MDXComponents = {
     h1: (props) => <Heading as="h1" size="xl" my={4} {...props} />,
     h2: (props) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
@@ -129,6 +190,11 @@ const MDXComponents = {
     ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
     li: (props) => <Box as="li" pb={1} {...props} />,
     blockquote: Quote,
+    img: (props) => <img src={props.src} alt={props.alt} style={{width: '70%', margin: 'auto'}} />,
+    Flex: (props) => <Flex {...props} />,
+    MultipleImages: (props) => <MultipleImages {...props} />,
+    FaqComponent: (props) => <FaqComponent {...props} />,
+    ImageGrid: (props) => <ImageGrid {...props} />
 }
 
 export { CustomLink }

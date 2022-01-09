@@ -50,7 +50,7 @@ const DropdownElement = ({ data }) => {
                 {data.chapters.map((child, i) => (
                     <Box
                         ml={"30px"}
-                        borderLeft={splitedPath === child.toLowerCase().replaceAll(' ', '-') ? '3px solid #606d8d' : '3px solid #263051'}
+                        borderLeft={splitedPath === child.toLowerCase().replaceAll(' ', '-') ? '3px solid #7db57d' : '3px solid #386338'}
                         p={'5px'} key={i}
                         pl={'10px'}
                         color="#fff"

@@ -7,17 +7,16 @@ import {
 
 import { SearchIcon } from '@chakra-ui/icons'
 
-const SearchInput = () => {
+const SearchInput = ({ setInput }) => {
 
-    const [searchValue, setSearchValue] = useState('')
 
     return (
         <InputGroup mb={4} mr={4} w="100%" mt={10}>
             <Input
                 aria-label="Search by title"
                 placeholder="Search by title"
-                onChange={(e) => setSearchValue(e.target.value)}
-                style={{ border: 'none', backgroundColor: '#2d3653', color: '#fff', outline: 'none' }}
+                onChange={(e) => setInput(e.target.value)}
+                style={{ border: 'none', backgroundColor: '#fff', color: '#000', outline: 'none' }}
                 
             />
             <InputLeftElement>

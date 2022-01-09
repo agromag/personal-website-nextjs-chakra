@@ -1,10 +1,17 @@
-import { Button, VStack, Box, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import DropDownList from "../Dropdown";
 import SearchInput from "../SearchInput";
-import { getAllFilesFrontMatter } from '../../lib/mdx'
 
 
-const SidebarContent = ({ menuContent }) => (
+const SidebarContent = ({ menuContent }) => {
+
+    const [searchInput, setSearchInput] = useState('')
+
+    const filteredMenuItems = menuContent.filter(item => item.title.includes(searchInput))
+
+    return (
+
     <Box
         style={{ maxHeight: '100%', overflowY: 'scroll' }}
         css={{
@@ -15,10 +22,11 @@ const SidebarContent = ({ menuContent }) => (
     >
         <Box>
             <Text color="#fff" fontWeight={'bold'} textTransform={'uppercase'} fontSize={20}> Documentation </Text>
-            <SearchInput />
+                <SearchInput setInput={setSearchInput}/>
         </Box>
-        <DropDownList data={ menuContent } />
-    </Box>
-)
+        <DropDownList data={filteredMenuItems} />
+        </Box>
+    )
+}
 
 export default SidebarContent;

@@ -26,7 +26,7 @@ export default function BlogLayout({ children, frontMatter, data }) {
         <Container sidebarContent={data} >
 
             <Head>
-                <title>{`${slug} - Blog - Benjamin Carlson`}</title>
+                <title>Agromag Fiki - {frontMatter.title}</title>
             </Head>
 
             <Stack
