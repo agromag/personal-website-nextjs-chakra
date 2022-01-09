@@ -1,83 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     useColorMode,
-    Button,
-    Flex,
     Box
 } from '@chakra-ui/react'
-import NextLink from 'next/link'
-import styled from '@emotion/styled'
+import { useBreakpointValue } from '@chakra-ui/react'
+import Sidebar from './Sidebar'
+import Header from './Header'
 
-import DarkModeSwitch from '../components/DarkModeSwitch'
+const smVariant = { navigation: 'drawer', navigationButton: true }
+const mdVariant = { navigation: 'sidebar', navigationButton: false }
 
-const Container = ({ children }) => {
-    const { colorMode } = useColorMode()
-
-    const bgColor = {
-        light: 'white',
-        dark: '#171717'
-    }
-
-    const color = {
-        light: 'black',
-        dark: 'white'
-    }
-
-    const navHoverBg = {
-        light: 'gray.600',
-        dark: 'gray.300',
-    }
-
-    const StickyNav = styled(Flex)`
-        position: sticky;
-        z-index: 10;
-        top: 0;
-        backdrop-filter: saturate(180%) blur(20px);
-        transition: height .5s, line-height .5s;
-        `
+const Container = ({ sidebarContent, children }) => {
+    const [isSidebarOpen, setSidebarOpen] = useState(false)
+    const variants = useBreakpointValue({ base: smVariant, md: mdVariant })
+  
+    const toggleSidebar = () => setSidebarOpen(!isSidebarOpen)
 
     return (
         <>
-            <StickyNav
-                flexDirection="row"
-                justifyContent="space-between"
-                alignItems="center"
-                maxWidth="800px"
-                minWidth="356px"
-                width="100%"
-                bg={bgColor[colorMode]}
-                as="nav"
-                px={[2, 6, 6]}
-                py={2}
-                mt={8}
-                mb={[0, 0, 8]}
-                mx="auto"
-            >
-                <Box>
-                    <NextLink href="/" passHref>
-                        <Button as="a" variant="ghost" p={[1, 2, 4]} _hover={{ backgroundColor: navHoverBg[colorMode] }}>
-                            Home
-                        </Button>
-                    </NextLink>
-                    <NextLink href="/blog" passHref>
-                        <Button as="a" variant="ghost" p={[1, 2, 4]} _hover={{ backgroundColor: navHoverBg[colorMode] }}>
-                            Blog
-                        </Button>
-                    </NextLink>
-                </Box>
-                <DarkModeSwitch />
-            </StickyNav >
-            <Flex
-                as="main"
-                justifyContent="center"
-                flexDirection="column"
-                bg={bgColor[colorMode]}
-                color={color[colorMode]}
-                px={[0, 4, 4]}
-                mt={[4, 8, 8]}
-            >
+            <Sidebar
+                variant={variants?.navigation}
+                isOpen={isSidebarOpen}
+                onClose={toggleSidebar}
+                content = {sidebarContent}
+            />
+
+            <Box ml={!variants?.navigationButton && 460}>
+                <Header
+                    showSidebarButton={variants?.navigationButton}
+                    onShowSidebar={toggleSidebar}
+                />
+
                 {children}
-            </Flex>
+
+            </Box>
         </>
     )
 }

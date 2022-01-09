@@ -24,9 +24,7 @@ const CustomLink = (props) => {
 
     if (isInternalLink) {
         return (
-            <NextLink href={href} passHref>
-                <Link color={color[colorMode]} {...props} />
-            </NextLink>
+           <Link color={color[colorMode]} {...props} href={href} />
         )
     }
 
